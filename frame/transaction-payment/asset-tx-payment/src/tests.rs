@@ -20,7 +20,6 @@ use codec;
 use frame_support::{
 	assert_ok,
 	dispatch::{DispatchClass, DispatchInfo, PostDispatchInfo},
-	pallet_prelude::*,
 	parameter_types,
 <<<<<<< HEAD
 	traits::{fungibles::Mutate, AsEnsureOriginWithArg, ConstU32, ConstU64, ConstU8, FindAuthor, tokens::OneToOneBalanceConversion, },

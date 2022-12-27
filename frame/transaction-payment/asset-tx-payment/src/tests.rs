@@ -21,14 +21,10 @@ use frame_support::{
 	assert_ok,
 	dispatch::{DispatchClass, DispatchInfo, PostDispatchInfo},
 	parameter_types,
-<<<<<<< HEAD
-	traits::{fungibles::Mutate, AsEnsureOriginWithArg, ConstU32, ConstU64, ConstU8, FindAuthor, tokens::OneToOneBalanceConversion, },
-=======
 	traits::{
-		fungibles::Mutate, tokens::OneToOneBalanceConversion, ConstU32, ConstU64, ConstU8,
-		FindAuthor,
+		fungibles::Mutate, tokens::IdentityBalanceConversion, AsEnsureOriginWithArg, ConstU32,
+		ConstU64, ConstU8, FindAuthor,
 	},
->>>>>>> fixes after rebase
 	weights::{Weight, WeightToFee as WeightToFeeT},
 	ConsensusEngineId,
 };
@@ -161,16 +157,11 @@ impl pallet_transaction_payment::Config for Runtime {
 	type OperationalFeeMultiplier = ConstU8<5>;
 }
 
-type AssetId = u32;
-
 impl pallet_assets::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
 	type Balance = Balance;
 	type AssetId = AssetId;
-<<<<<<< HEAD
 	type AssetIdParameter = codec::Compact<AssetId>;
-=======
->>>>>>> fixes after rebase
 	type Currency = Balances;
 	type CreateOrigin = AsEnsureOriginWithArg<frame_system::EnsureSigned<AccountId>>;
 	type ForceOrigin = EnsureRoot<AccountId>;
@@ -231,7 +222,7 @@ impl Config for Runtime {
 	type ConfigurationOrigin = EnsureRoot<AccountId>;
 	type PayableCall = RuntimeCall;
 	type ConfigurationExistentialDeposit = ConstU64<100>;
-	type BalanceConverter = OneToOneBalanceConversion;
+	type BalanceConverter = IdentityBalanceConversion;
 	type Lock = Assets;
 }
 

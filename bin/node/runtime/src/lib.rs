@@ -32,16 +32,10 @@ use frame_support::{
 	pallet_prelude::Get,
 	parameter_types,
 	traits::{
-<<<<<<< HEAD
-		fungible::ItemOf, AsEnsureOriginWithArg, ConstBool, ConstU128, ConstU16, ConstU32,
-		Currency, EitherOfDiverse, EqualPrivilegeOnly, Everything, Imbalance, InstanceFilter,
-		KeyOwnerProofSystem, LockIdentifier, Nothing, OnUnbalanced, U128CurrencyToVote,
-		WithdrawReasons,tokens::OneToOneBalanceConversion,
-=======
-		tokens::OneToOneBalanceConversion, AsEnsureOriginWithArg, ConstU128, ConstU16, ConstU32,
-		Currency, EitherOfDiverse, EqualPrivilegeOnly, Everything, Imbalance, InstanceFilter,
-		KeyOwnerProofSystem, LockIdentifier, Nothing, OnUnbalanced, U128CurrencyToVote,
->>>>>>> fixes after rebase
+		fungible::ItemOf, tokens::IdentityBalanceConversion, AsEnsureOriginWithArg, ConstBool,
+		ConstU128, ConstU16, ConstU32, Currency, EitherOfDiverse, EqualPrivilegeOnly, Everything,
+		Imbalance, InstanceFilter, KeyOwnerProofSystem, LockIdentifier, Nothing, OnUnbalanced,
+		U128CurrencyToVote, WithdrawReasons,
 	},
 	weights::{
 		constants::{
@@ -492,7 +486,7 @@ impl pallet_asset_tx_payment::Config for Runtime {
 	type ConfigurationOrigin = EnsureRoot<AccountId>;
 	type PayableCall = RuntimeCall;
 	type ConfigurationExistentialDeposit = ConstU128<100>;
-	type BalanceConverter = OneToOneBalanceConversion;
+	type BalanceConverter = IdentityBalanceConversion;
 	type Lock = Assets;
 }
 

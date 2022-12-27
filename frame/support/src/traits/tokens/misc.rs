@@ -210,8 +210,8 @@ pub trait BalanceConversion<InBalance, AssetId, OutBalance> {
 	fn to_asset_balance(balance: InBalance, asset_id: AssetId) -> Result<OutBalance, Self::Error>;
 }
 
-pub struct OneToOneBalanceConversion;
-impl<Balance, AssetId> BalanceConversion<Balance, AssetId, Balance> for OneToOneBalanceConversion {
+pub struct IdentityBalanceConversion;
+impl<Balance, AssetId> BalanceConversion<Balance, AssetId, Balance> for IdentityBalanceConversion {
 	type Error = DispatchError;
 	fn to_asset_balance(balance: Balance, _asset_id: AssetId) -> Result<Balance, Self::Error> {
 		Ok(balance)

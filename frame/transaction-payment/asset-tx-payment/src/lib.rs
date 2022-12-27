@@ -142,7 +142,7 @@ pub mod pallet {
 		type WeightInfo: WeightInfo;
 
 		/// origin allowed to reset payment asset for any account
-		type ConfigurationOrigin: EnsureOrigin<Self::Origin>;
+		type ConfigurationOrigin: EnsureOrigin<Self::RuntimeOrigin>;
 
 		/// Amount native assets to lock of ED.
 		/// Non native equivalent of asset is locked as defined by `BalanceConverter` at time of
@@ -151,8 +151,11 @@ pub mod pallet {
 
 		type PayableCall: Parameter
 			+ From<frame_system::Call<Self>>
-			+ Dispatchable<Origin = Self::Origin, PostInfo = PostDispatchInfo, Info = DispatchInfo>
-			+ GetDispatchInfo
+			+ Dispatchable<
+				RuntimeOrigin = Self::RuntimeOrigin,
+				PostInfo = PostDispatchInfo,
+				Info = DispatchInfo,
+			> + GetDispatchInfo
 			+ IsSubType<Call<Self>>
 			+ IsType<<Self as frame_system::Config>::RuntimeCall>;
 
@@ -203,6 +206,7 @@ pub mod pallet {
 		///
 		/// If `asset_id` is `None`, then native asset is used.
 		/// Else new asset is configured and ED is on hold.
+		#[pallet::call_index(0)]
 		#[pallet::weight(T::WeightInfo::set_payment_asset())]
 		pub fn set_payment_asset(
 			origin: OriginFor<T>,

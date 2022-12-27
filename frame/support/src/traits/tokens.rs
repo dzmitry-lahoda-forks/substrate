@@ -29,5 +29,5 @@ pub mod nonfungibles_v2;
 pub use imbalance::Imbalance;
 pub use misc::{
 	AssetId, AttributeNamespace, Balance, BalanceConversion, BalanceStatus, DepositConsequence,
-	ExistenceRequirement, Locker, WithdrawConsequence, WithdrawReasons,tokens::OneToOneBalanceConversion,
+	ExistenceRequirement, IdentityBalanceConversion, Locker, WithdrawConsequence, WithdrawReasons,
 };

@@ -301,15 +301,6 @@ impl<T: Config<I>, I: 'static> fungibles::InspectEnumerable<T::AccountId> for Pa
 	}
 }
 
-impl<T: Config<I>, I: 'static> fungibles::InspectEnumerable<T::AccountId> for Pallet<T, I> {
-	type AssetsIterator = KeyPrefixIterator<<T as Config<I>>::AssetId>;
-
-	/// Returns an iterator of the assets in existence.
-	///
-	/// NOTE: iterating this list invokes a storage read per item.
-	fn asset_ids() -> Self::AssetsIterator {
-		Asset::<T, I>::iter_keys()
-=======
 // noop hold implementation
 // real impl can be next pr
 impl<T: Config<I>, I: 'static> fungibles::InspectHold<<T as SystemConfig>::AccountId>
